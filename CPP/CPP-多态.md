@@ -10,5 +10,34 @@
 * 虚函数表中列出了该类（没有基类）的虚函数地址。  
 * 子类的数据区中也包含着父类的所有数据成员（包括虚函数表指针）。
 
+```c++
+class A {
+
+};
+
+class B {
+    virtual int f();
+};
+
+class C : public B {
+
+};
+class D : virtual public A {
+
+};
+class E : virtual public B {
+
+};
+int main(int argc, char const *argv[])
+{
+    cout << sizeof(A) << endl;  //1
+    cout << sizeof(B) << endl;  //8
+    cout << sizeof(C) << endl;  //8
+    cout << sizeof(D) << endl;  //8
+    cout << sizeof(E) << endl;  //8
+    return 0;
+}
+```
+
 **多态的主要作用为：对继承体系中的所有类型都共通的行为和操作定义一个共同的接口。**  
 
